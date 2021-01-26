@@ -1,0 +1,43 @@
+name: Dev Deploy
+
+on:
+  push:
+    branches: [blah]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    name: Build/Deploy
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12
+      - run: echo "//npm.pkg.github.com/:_authToken=${{ secrets.NPM_TOKEN }}" >> ~/.npmrc
+      - run: npm install
+      # - run: yarn test
+      - uses: sonic-web-dev/gh-action-bump-version@feat/override-cred
+        env:
+          GITHUB_TOKEN: ${{ secrets.token }}
+          GITHUB_USER: ${{ secrets.GH_USER }}
+          GITHUB_EMAIL: ${{ secrets.GH_EMAIL }}
+          GITHUB_ACTOR: ${{ secrets.GH_USER }}
+      - run: npm run build:production
+      - run: cp ./project/app/static/voyager.worker.js ./dist
+      - run: npm run generate-build-version
+      - uses: jakejarvis/s3-sync-action@master
+        with:
+          args: --acl public-read --follow-symlinks --delete
+        env:
+          AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET_DEV }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_KEY }}
+          AWS_REGION: 'us-east-1' # optional: defaults to us-east-1
+          SOURCE_DIR: 'dist' # optional: defaults to entire repository
+      # - uses: awact/cloudfront-action@master
+      #   env:
+      #     SOURCE_PATH: "/*"
+      #     AWS_REGION: "us-east-1"
+      #     AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY }}
+      #     AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_KEY }}
+      #     DISTRIBUTION_ID: ${{ secrets.DISTRIBUTION_ID_DEV }}

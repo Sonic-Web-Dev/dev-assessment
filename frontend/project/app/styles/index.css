@@ -1,0 +1,9 @@
+/***********************************************************************************************************************
+* BEFORE USING CUSTOM CSS PLEASE TRY AND LEVERAGE TAILWIND AS MUCH AS POSSIBLE                                   *
+*                                                                                                                      *
+* EVERY TIME A CUSTOM STYLE IS CREATED AN ANGEL LOSES ITS WINGS                                                        *
+***********************************************************************************************************************/
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
