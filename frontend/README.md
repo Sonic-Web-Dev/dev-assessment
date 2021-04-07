@@ -10,6 +10,15 @@ Your task is it build out the UI to view rocket details and update users associa
 
 > You do not have to do all of the tasks below. Just pick a few or complete them all if you are feeling frisky.
 
+## Installation & Running
+
+```shell
+npm install
+```
+
+```shell
+npm start
+```
 ## Tasks
 
 - Design the rockets page to view a list of rockets
