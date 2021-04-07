@@ -7,8 +7,6 @@
   "license": "ISC",
   "scripts": {
     "start": "av start",
-    "build:tailwind": "postcss ./project/app/styles/index.css -o ./project/app/styles/tailwind.css",
-    "watch:tailwind": "postcss ./project/app/styles/index.css -o ./project/app/styles/tailwind.css -w",
     "lint": "av lint",
     "profile": "av profile",
     "build": "av build",
@@ -20,9 +18,7 @@
   },
   "dependencies": {
     "@apollo/client": "^3.3.7",
-    "@tailwindcss/postcss7-compat": "^2.0.2",
     "graphql": "^15.4.0",
-    "postcss": "^8.2.4",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.1.2",
@@ -40,16 +36,13 @@
     "@types/react-dom": "^16.9.4",
     "@types/react-router-dom": "^5.1.2",
     "@types/yup": "^0.26.30",
-    "autoprefixer": "^9.8.6",
     "cross-env": "^7.0.2",
     "eslint-config-availity": "^5.2.1",
     "husky": "^3.0.9",
     "identity-obj-proxy": "^3.0.0",
     "lint-staged": "^8.1.6",
-    "postcss-cli": "^8.0.0",
     "prettier": "^2.0.5",
-    "raf": "^3.4.1",
-    "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.0.2"
+    "raf": "^3.4.1"
   },
   "browserslist": [
     ">0.2%",

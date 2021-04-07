@@ -11,6 +11,7 @@ const client = new ApolloClient({
   cache: new InMemoryCache({
     addTypename: false,
     dataIdFromObject: (o: any) => o?.id,
+    possibleTypes: {},
   }),
 });
 

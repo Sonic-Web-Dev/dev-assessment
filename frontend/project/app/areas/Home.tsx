@@ -8,7 +8,7 @@ const HomePage: React.FC<RouteComponentProps<{}>> = ({ history }) => {
   return (
     <div>
       Home Page
-      <ul className="text-black">
+      <ul>
         {data?.rockets.map((r) => (
           <li key={r.id} onClick={() => history.push(`/rockets/${r.id}`)}>
             {r.name}
